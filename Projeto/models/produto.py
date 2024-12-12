@@ -7,7 +7,7 @@ class Produto:
         self.estoque = estoque
         self.id_categoria = id_categoria
     def __str__(self):
-        return f"{self.id} - {self.descricao} - {self.estoque} - R${self.preco:.2f}"
+        return f"{self.id} - {self.descricao} - {self.estoque} - R${self.preco}"
 
 class Produtos:
     objetos = [] # atributo de classe
