@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from views import View
+from templates.mantercategoriaUI import ManterCategoriaUI
 import time
 
 class ManterProdutoUI:
@@ -13,13 +14,13 @@ class ManterProdutoUI:
         with tab4: ManterProdutoUI.excluir()
 
     def listar():
-        clientes = View.produto_listar()
-        if len(clientes) == 0: 
+        produto = View.produto_listar()
+        if len(produto) == 0: 
             st.write("Nenhum produto cadastrado")
         else:    
-            #for obj in clientes: st.write(obj)
+            #for obj in produto: st.write(obj)
             dic = []
-            for obj in clientes: dic.append(obj.__dict__)
+            for obj in produto: dic.append(obj.__dict__)
             df = pd.DataFrame(dic)
             st.dataframe(df)
 
@@ -27,7 +28,7 @@ class ManterProdutoUI:
         descricao = st.text_input("Informe a descrição: ")
         preco = st.text_input("Informe o preço: ")
         estoque = st.text_input("Informe o estoque: ")
-        id_categoria = st.selectbox("Informe o id da categoria", categoria)
+        id_categoria = st.selectbox("Informe o id da categoria", id_categoria)
 
         if st.button("Inserir"):
             View.produto_inserir(descricao, preco, estoque, categoria)
@@ -36,8 +37,8 @@ class ManterProdutoUI:
             st.rerun()
 
     def atualizar():
-        clientes = View.cliente_listar()
-        if len(clientes) == 0: 
+        produto = View.cliente_listar()
+        if len(produto) == 0: 
             st.write("Nenhum produto cadastrado")
         else:
             op = st.text_input("Atualização de produto", Produtos)
