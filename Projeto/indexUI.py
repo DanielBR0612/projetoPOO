@@ -1,9 +1,11 @@
 from templates.manterclienteUI import ManterClienteUI
 from templates.manterprodutosUI import ManterProdutoUI
 from templates.mantercategoriaUI import ManterCategoriaUI
+from templates.comprarcarrinho import ComprarCarrinho
 from templates.abrircontaUI import AbrirContaUI
 from templates.loginUI import LoginUI
 from views import View
+from templates.produtocliente import ProdutoCliente
 
 import streamlit as st
 
@@ -20,7 +22,9 @@ class IndexUI:
         if op == "Cadastro de Categorias": ManterCategoriaUI.main()
 
     def menu_cliente():
-        op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Inserir Produto no Carrinho", "Comprar Carrinho", "Ver Meus Pedidos"])
+        op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Comprar Carrinho", "Ver Meus Pedidos"])
+        if op == "Listar Produtos": ProdutoCliente.main()
+        if op == "Comprar Carrinho": ComprarCarrinho.main()
 
     def sair_do_sistema():
         if st.sidebar.button("Sair"):

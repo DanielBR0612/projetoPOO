@@ -3,14 +3,12 @@ import pandas as pd
 from views import View
 import time
 
-class ManterProdutoUI:
+class ProdutoCliente:
     def main():
         st.header("Cadastro de Produtos")
-        tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
-        with tab1: ManterProdutoUI.listar()
-        with tab2: ManterProdutoUI.inserir()
-        with tab3: ManterProdutoUI.atualizar()
-        with tab4: ManterProdutoUI.excluir()
+        tab1, tab2 = st.tabs(["Listar", "Inserir"])
+        with tab1: ProdutoCliente.listar()
+        with tab2: ProdutoCliente.inserir()
 
     def listar():
         produto = View.produto_listar()
@@ -24,14 +22,11 @@ class ManterProdutoUI:
             st.dataframe(df)
 
     def inserir():
-        idcategoria = View.categoria_listar()
-        descricao = st.text_input("Informe a descrição: ")
-        preco = st.text_input("Informe o preço: ")
-        estoque = st.text_input("Informe o estoque: ")
-        id_categoria = st.selectbox("Informe o id da categoria", idcategoria)
+        idproduto = View.produto_listar()
+        id_produto = st.selectbox("Informe o id da categoria", idproduto)
 
         if st.button("Inserir"):
-            View.produto_inserir(descricao, preco, estoque, id_categoria.id)
+            View.inserir_carrinho(idproduto)
             st.success("Produto inserido com sucesso")
             time.sleep(2)
             st.rerun()
@@ -44,7 +39,7 @@ class ManterProdutoUI:
         else:
             op = st.selectbox("Atualização de produto", produto)
             descricao = st.text_input("Informe o novo descricao do cliente", op.descricao)
-            preco = st.text_input("Informe o novo preço", op.preco)
+            preco = st.text_input("Informe o novo e-mail", op.preco)
             estoque = st.text_input("Informe o novo estoque", op.estoque)
             categoria = st.selectbox("Informe a nova categoria", idcategoria)
             if st.button("Atualizar"):
