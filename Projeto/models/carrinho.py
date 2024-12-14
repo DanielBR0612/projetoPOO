@@ -3,6 +3,7 @@ import json
 class Carrrinho:
     def __init__(self, id):
         self.id = id # atributos de instância
+       #self.descricao = descricao
     def __str__(self):
         return f"{self.id} - {self.descricao}"
 

@@ -26,7 +26,7 @@ class ProdutoCliente:
         id_produto = st.selectbox("Informe o id da categoria", idproduto)
 
         if st.button("Inserir"):
-            View.inserir_carrinho(idproduto)
+            View.inserir_carrinho(id_produto)
             st.success("Produto inserido com sucesso")
             time.sleep(2)
             st.rerun()

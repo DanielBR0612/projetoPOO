@@ -77,5 +77,9 @@ class View:
     @staticmethod
     def listar_carrinho():
         return Carrinhos.listar()
-
+    @staticmethod
+    def excluir_carrinho():
+        c = Carrrinho(id, "", 0, 0, None)
+        Carrrinho.excluir(c)
+        
         
