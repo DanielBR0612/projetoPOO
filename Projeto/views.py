@@ -2,6 +2,7 @@ from models.cliente import Cliente, Clientes
 from models.categoria import Categoria, Categorias
 from models.produto import Produto, Produtos
 from models.carrinho import Carrrinho, Carrinhos
+from models.pedidos import Pedido, Pedidos
 
 class View:
     @staticmethod
@@ -78,8 +79,17 @@ class View:
     def listar_carrinho():
         return Carrinhos.listar()
     @staticmethod
-    def excluir_carrinho():
-        c = Carrrinho(id, "", 0, 0, None)
-        Carrrinho.excluir(c)
+    def excluir_carrinho(id):
+        c = Carrrinho(id)
+        Carrinhos.excluir(c)
+    @staticmethod
+    def pedido_inserir(id_produto):
+        c = Pedido(id_produto)
+        Pedidos.inserir(c)
+    @staticmethod
+    def pedido_listar():
+        return Pedidos.listar()
+
+    
         
         

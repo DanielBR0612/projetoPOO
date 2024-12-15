@@ -4,15 +4,15 @@ from views import View
 import time
 import json
 
-class ComprarCarrinho:
+class VerPedidos:
     def main():
         st.header("Cadastro de Produtos")
-        tab1, tab2 = st.tabs(["Listar", "Excluir"])
-        with tab1: ComprarCarrinho.listar()
-        with tab2: ComprarCarrinho.excluir()
+        tab1, tab2 = st.tabs(["Pedidos", "Excluir"])
+        with tab1: VerPedidos.listar()
+        with tab2: VerPedidos.excluir()
 
     def listar():
-        produtos = View.listar_carrinho()
+        produtos = View.pedido_listar()
         if len(produtos) == 0:
             st.write("Nenhum produto cadastrado")
         else:
@@ -32,18 +32,10 @@ class ComprarCarrinho:
             # Converte para DataFrame
             df = pd.json_normalize(dic)  # Normaliza dados aninhados em colunas
             st.dataframe(df)
-
-            if st.button("Comprar"):
-                for obj in produtos:
-                    View.pedido_inserir(obj)
-                st.success("Produto inserido com sucesso")
-                time.sleep(2)
-                st.rerun()
-
     @staticmethod
     def inserir():
         #try:
-            with open('carrinhos.json', 'r') as f:
+            with open('pedidos.json', 'r') as f:
                 data = json.load(f)
         #except FileNotFoundError:
             #st.error("Arquivo 'carrinhos.json' não encontrado.")
@@ -51,7 +43,6 @@ class ComprarCarrinho:
         #except json.JSONDecodeError:
            # st.error("Erro ao ler o arquivo JSON.")
            # return
-    
 
     @classmethod
     def excluir(cls):

@@ -1,6 +1,6 @@
 import json
 
-class Carrrinho:
+class Pedido:
     def __init__(self, id):
         self.id = id # atributos de instância
        #self.descricao = descricao
@@ -9,7 +9,7 @@ class Carrrinho:
 
 
 
-class Carrinhos:
+class Pedidos:
     objetos = [] # atributo de classe
     @classmethod
     def inserir(cls, obj):
@@ -52,20 +52,20 @@ class Carrinhos:
         # open - cria e abre o arquivo clientes.json
         # vars - converte um objeto em um dicionário
         # dump - pega a lista de objetos e salva no arquivo
-        with open("carrinhos.json", mode="w") as arquivo:
+        with open("pedidos.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default = vars)
     @classmethod
     def abrir(cls):
         # esvazia a lista de objetos
         cls.objetos = []
         try:
-            with open("carrinhos.json", mode="r") as arquivo:
+            with open("pedidos.json", mode="r") as arquivo:
                 # abre o arquivo com a lista de dicionários -> clientes_json
                 objetos_json = json.load(arquivo)
                 # percorre a lista de dicionários
                 for obj in objetos_json:
                     # recupera cada dicionário e cria um objeto
-                    c = Carrrinho(obj["id"])
+                    c = Pedido(obj["id"])
                     # insere o objeto na lista
                     cls.objetos.append(c)    
         except FileNotFoundError:

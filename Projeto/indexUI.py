@@ -4,6 +4,7 @@ from templates.mantercategoriaUI import ManterCategoriaUI
 from templates.comprarcarrinho import ComprarCarrinho
 from templates.abrircontaUI import AbrirContaUI
 from templates.loginUI import LoginUI
+from templates.verpedidos import VerPedidos
 from views import View
 from templates.produtocliente import ProdutoCliente
 
@@ -25,6 +26,7 @@ class IndexUI:
         op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Comprar Carrinho", "Ver Meus Pedidos"])
         if op == "Listar Produtos": ProdutoCliente.main()
         if op == "Comprar Carrinho": ComprarCarrinho.main()
+        if op == "Ver Meus Pedidos": VerPedidos.main()
 
     def sair_do_sistema():
         if st.sidebar.button("Sair"):
