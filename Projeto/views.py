@@ -89,6 +89,10 @@ class View:
     @staticmethod
     def pedido_listar():
         return Pedidos.listar()
+    @staticmethod
+    def pedido_excluir(id):
+        c = Pedido(id)
+        Pedidos.excluir(c)
 
     
         

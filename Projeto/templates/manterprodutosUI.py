@@ -6,11 +6,12 @@ import time
 class ManterProdutoUI:
     def main():
         st.header("Cadastro de Produtos")
-        tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir", "Reajustar"])
         with tab1: ManterProdutoUI.listar()
         with tab2: ManterProdutoUI.inserir()
         with tab3: ManterProdutoUI.atualizar()
         with tab4: ManterProdutoUI.excluir()
+        with tab5: ManterProdutoUI.produto_reajustar()
 
     def listar():
         produto = View.produto_listar()
@@ -47,6 +48,7 @@ class ManterProdutoUI:
             preco = st.text_input("Informe o novo preço", op.preco)
             estoque = st.text_input("Informe o novo estoque", op.estoque)
             categoria = st.selectbox("Informe a nova categoria", idcategoria)
+            reajuste = st.text_input("informe o reajuste")
             if st.button("Atualizar"):
                 View.produto_atualizar(op.id, descricao, preco, estoque, categoria.id)
                 st.success("Produto atualizado com sucesso")
@@ -64,3 +66,20 @@ class ManterProdutoUI:
                 st.success("Cliente excluído com sucesso")
                 time.sleep(2)
                 st.rerun()
+    
+    @classmethod 
+    def produto_reajustar(cls):
+        idcategoria = View.categoria_listar()
+        produto = View.produto_listar()
+        if len(produto) == 0: 
+            st.write("Nenhum produto cadastrado")
+        else:
+            ops = st.selectbox("Reajuste de produto", produto)
+            porcentagem = st.text_input("Digite o valor do reajuste em %")
+
+            if st.button("Reajustar"):
+                View.produto_reajustar(int(int(porcentagem)/100))
+                st.success("Produto reajustado")
+                time.sleep(2)
+                st.rerun()
+        

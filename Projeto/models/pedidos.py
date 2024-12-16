@@ -49,24 +49,18 @@ class Pedidos:
             cls.salvar()        
     @classmethod
     def salvar(cls):
-        # open - cria e abre o arquivo clientes.json
-        # vars - converte um objeto em um dicionário
-        # dump - pega a lista de objetos e salva no arquivo
         with open("pedidos.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default = vars)
     @classmethod
     def abrir(cls):
-        # esvazia a lista de objetos
         cls.objetos = []
         try:
             with open("pedidos.json", mode="r") as arquivo:
-                # abre o arquivo com a lista de dicionários -> clientes_json
                 objetos_json = json.load(arquivo)
-                # percorre a lista de dicionários
+
                 for obj in objetos_json:
-                    # recupera cada dicionário e cria um objeto
                     c = Pedido(obj["id"])
-                    # insere o objeto na lista
+                  
                     cls.objetos.append(c)    
         except FileNotFoundError:
             pass
